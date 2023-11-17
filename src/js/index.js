@@ -1,5 +1,4 @@
 import {getPhotos} from "./api.js";
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Notify } from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import "simplelightbox/dist/simple-lightbox.min.css";
@@ -20,6 +19,10 @@ async function getData(userInput, page) {
         arrPhotos = response.hits;
         totalPhotos = response.totalHits;
         gallery.insertAdjacentHTML("beforeend", addCards(arrPhotos));
+        const lightbox = new SimpleLightbox('.gallery a', {
+            captionsData: 'alt',
+            captionDelay: 250,
+        });
     } catch (error) {
         console.log(error);
         Notify.failure(`Oops. Something went wrong.`);
@@ -28,7 +31,7 @@ async function getData(userInput, page) {
 function addCards(arrPhotos) {
     return arrPhotos.map(photo => {
         return `
-        <div class="photo-card">
+        <a class="photo-card" href="${photo.largeImageURL}">
             <img src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" />
             <div class="info">
             <p class="info-item">
@@ -44,7 +47,7 @@ function addCards(arrPhotos) {
             <b>Downloads ${photo.downloads}</b>
             </p>
             </div>
-        </div>
+        </a>
         `
     });
 }
