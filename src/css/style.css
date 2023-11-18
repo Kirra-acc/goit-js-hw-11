@@ -1,3 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255,243,235);
+    background-image: url("../images/hw11-bg-3.png");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    font-family: 'DM Serif Display', serif;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+
+}
 .is-hidden {
     visibility: hidden;
+}
+
+.search-form {
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 20px;
+}
+.input {
+    width: 270px;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    font-family: 'DM Serif Display', serif;
+
+    border-radius: 20px;
+    outline: none;
+    border: 3px solid rgb(223, 202, 175);
+    color: #453434;
+    transition: all .5s ease;
+}
+.input:hover,
+.input:focus {
+    border-color: #453434;
+}
+.btnSearch {
+    width: 90px;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'DM Serif Display', serif;
+
+    border-radius: 20px;
+    color: #767577;
+    outline: none;
+    border: 3px solid rgb(223, 202, 175);
+    background: #fefdfe;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.btnSearch:hover {
+    color: #453434;
+    border-color: #453434;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: flex-start; */
+    /* gap: 20px; */
+}
+.photo-card {
+    width: calc(100% / 4 - 40px);
+    height: 300px;
+    margin: 10px auto;
+    border: 3px solid rgb(223, 202, 175);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    background: #fefdfe;
+
+    display: flex;
+    flex-direction: column;
+}
+.photo-card:hover {
+    transform: scale(1.05);
+}
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.info {
+    padding: 20px 5px 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    /* height: 100%; */
+    width: 100%;
+}
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #453434;
+
+}
+
+.more-container {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.load-more {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'DM Serif Display', serif;
+
+    border-radius: 20px;
+    color: #767577;
+    outline: none;
+    border: 3px solid rgb(223, 202, 175);
+    background: #fefdfe;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.load-more:hover {
+    color: #453434;
+    border-color: #453434;
 }

@@ -32,19 +32,23 @@ function addCards(arrPhotos) {
     return arrPhotos.map(photo => {
         return `
         <a class="photo-card" href="${photo.largeImageURL}">
-            <img src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" />
+            <img class="card-img" src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" />
             <div class="info">
             <p class="info-item">
-                <b>Likes ${photo.likes}</b>
+                <b>Likes</b>
+                <b>${photo.likes}</b>
             </p>
             <p class="info-item">
-            <b>Views ${photo.views}</b>
+                <b>Views</b>
+                <b>${photo.views}</b>
             </p>
             <p class="info-item">
-            <b>Comments ${photo.comments}</b>
+                <b>Comments</b>
+                <b>${photo.comments}</b>
             </p>
             <p class="info-item">
-            <b>Downloads ${photo.downloads}</b>
+                <b>Downloads</b>
+                <b>${photo.downloads}</b>
             </p>
             </div>
         </a>
