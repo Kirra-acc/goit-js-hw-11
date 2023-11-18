@@ -53,7 +53,8 @@ function addCards(arrPhotos) {
             </div>
         </a>
         `
-    });
+    }).join('');
+    // smoothScroll();
 }
 
 form.addEventListener("submit", async (event) => {
@@ -63,6 +64,7 @@ form.addEventListener("submit", async (event) => {
 
     userInput = input.value;
     await getData(userInput, page);
+    // smoothScroll()
     if (arrPhotos.length === 0) {
         Notify.failure(
             'Sorry, there are no images matching your search query. Please try again.'
@@ -87,4 +89,42 @@ btnMore.addEventListener("click", async () => {
         btnMore.classList.add("is-hidden");
     } 
 })
-getPhotos()
+// Зробити плавне прокручування сторінки після запиту і відтворення кожної наступної групи зображень.
+
+// function smoothScroll() {
+//     const { height: cardHeight } = document
+//       .querySelector('.gallery')
+//       .firstElementChild.getBoundingClientRect();
+  
+//     window.scrollBy({
+//       top: cardHeight * 2,
+//       behavior: 'smooth',
+//     });
+// }
+// getData(userInput, page)
+//   .then(() => {
+//     smoothScroll();
+//   })
+//   .catch(error => {
+//     console.log(error);
+//     Notify.failure(`Oops. Something went wrong.`);
+// });
+
+// const onScroll = () => {
+//     const { scrollTop, clientHeight, scrollHeight } = document.body;
+//     if (scrollTop + clientHeight >= scrollHeight) {
+//       // Завантажуємо наступну групу зображень
+//       getData(userInput, page + 1)
+//         .then(() => {
+//           // Вставляємо нові зображення в галерею
+//           const newCards = addCards(arrPhotos);
+//           gallery.insertAdjacentHTML("beforeend", newCards);
+//         })
+//         .catch(error => {
+//           console.log(error);
+//           Notify.failure(`Oops. Something went wrong.`);
+//         });
+//     }
+// };
+  
+// document.body.addEventListener("scroll", onScroll);

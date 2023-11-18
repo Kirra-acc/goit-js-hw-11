@@ -139,3 +139,12 @@ body {
     color: #453434;
     border-color: #453434;
 }
+.scroll-up {
+    display: block;
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    right: 50px;
+    bottom: 50px;
+    stroke: #453434;
+}
