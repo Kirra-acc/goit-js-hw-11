@@ -71,15 +71,15 @@ body {
 }
 
 .gallery {
+    padding: 0 10px;
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: flex-start; */
-    /* gap: 20px; */
+    justify-content: flex-start;
+    gap: 20px;
 }
 .photo-card {
-    width: calc(100% / 4 - 40px);
+    width: calc((100vw - 3 * 20px - 2 * 10px) / 4);
     height: 300px;
-    margin: 10px auto;
     border: 3px solid rgb(223, 202, 175);
     border-radius: 10px;
     overflow: hidden;

@@ -11,7 +11,7 @@ export async function getPhotos(userInput, page) {
         orientation: 'horizontal',
         safesearch: true,
         per_page: 40,
-        page,
+        page: page,
       });
     const res = await axios.get(`${BASE_URL}?${param}`);
     console.log(res.data);

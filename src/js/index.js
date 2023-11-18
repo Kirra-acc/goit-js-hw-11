@@ -5,17 +5,15 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const form = document.querySelector(".search-form");
 const input = document.querySelector(".input");
-const btnSearch = document.querySelector(".btnSearch");
 const gallery = document.querySelector(".gallery");
 const btnMore = document.querySelector(".load-more");
 
 let page = 1;
-
 let arrPhotos = [];
 let totalPhotos = 0;
 async function getData(userInput, page) {
     try {
-        const response = await getPhotos(userInput, page)
+        const response = await getPhotos(userInput, page);
         arrPhotos = response.hits;
         totalPhotos = response.totalHits;
         gallery.insertAdjacentHTML("beforeend", addCards(arrPhotos));
@@ -54,7 +52,6 @@ function addCards(arrPhotos) {
         </a>
         `
     }).join('');
-    // smoothScroll();
 }
 
 form.addEventListener("submit", async (event) => {
@@ -64,7 +61,6 @@ form.addEventListener("submit", async (event) => {
 
     userInput = input.value;
     await getData(userInput, page);
-    // smoothScroll()
     if (arrPhotos.length === 0) {
         Notify.failure(
             'Sorry, there are no images matching your search query. Please try again.'
@@ -82,6 +78,7 @@ btnMore.addEventListener("click", async () => {
     page += 1;
     console.log(page);
     await getData(userInput, page);
+    smoothScroll();
     if (arrPhotos.length === 0) {
         Notify.info(
             `We're sorry, but you've reached the end of search results.`
@@ -91,40 +88,13 @@ btnMore.addEventListener("click", async () => {
 })
 // Зробити плавне прокручування сторінки після запиту і відтворення кожної наступної групи зображень.
 
-// function smoothScroll() {
-//     const { height: cardHeight } = document
-//       .querySelector('.gallery')
-//       .firstElementChild.getBoundingClientRect();
+function smoothScroll() {
+    const { height: cardHeight } = document
+      .querySelector('.gallery')
+      .firstElementChild.getBoundingClientRect();
   
-//     window.scrollBy({
-//       top: cardHeight * 2,
-//       behavior: 'smooth',
-//     });
-// }
-// getData(userInput, page)
-//   .then(() => {
-//     smoothScroll();
-//   })
-//   .catch(error => {
-//     console.log(error);
-//     Notify.failure(`Oops. Something went wrong.`);
-// });
-
-// const onScroll = () => {
-//     const { scrollTop, clientHeight, scrollHeight } = document.body;
-//     if (scrollTop + clientHeight >= scrollHeight) {
-//       // Завантажуємо наступну групу зображень
-//       getData(userInput, page + 1)
-//         .then(() => {
-//           // Вставляємо нові зображення в галерею
-//           const newCards = addCards(arrPhotos);
-//           gallery.insertAdjacentHTML("beforeend", newCards);
-//         })
-//         .catch(error => {
-//           console.log(error);
-//           Notify.failure(`Oops. Something went wrong.`);
-//         });
-//     }
-// };
-  
-// document.body.addEventListener("scroll", onScroll);
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
+}
