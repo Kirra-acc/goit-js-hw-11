@@ -9,13 +9,14 @@ const gallery = document.querySelector(".gallery");
 const btnMore = document.querySelector(".load-more");
 
 let page = 1;
+let perPage = 40;
 let arrPhotos = [];
 let totalPhotos = 0;
 let userInput;
 
-async function getData(userInput, page) {
+async function getData(userInput, page, perPage) {
     try {
-        const response = await getPhotos(userInput, page);
+        const response = await getPhotos(userInput, page, perPage);
         arrPhotos = response.hits;
         totalPhotos = response.totalHits;
         gallery.insertAdjacentHTML("beforeend", addCards(arrPhotos));
@@ -61,11 +62,21 @@ form.addEventListener("submit", async (event) => {
     gallery.innerHTML = "";
     page = 1;
 
-    userInput = input.value;
-    await getData(userInput, page);
+    userInput = input.value.trim();
+    if (!userInput) {
+        Notify.failure(`I'm sorry, but I can't process an empty request.`);
+        btnMore.classList.add('is-hidden');
+    }
+    await getData(userInput, page, perPage);
     if (arrPhotos.length === 0) {
         Notify.failure(
             'Sorry, there are no images matching your search query. Please try again.'
+        );
+        btnMore.classList.add("is-hidden");
+    } 
+    if (arrPhotos.length < perPage) {
+        Notify.success(
+            `Hooray! We found ${totalPhotos} images.`
         );
         btnMore.classList.add("is-hidden");
     } else {
@@ -79,9 +90,9 @@ form.addEventListener("submit", async (event) => {
 btnMore.addEventListener("click", async () => {
     page += 1;
     console.log(page);
-    await getData(userInput, page);
+    await getData(userInput, page, perPage);
     smoothScroll();
-    if (arrPhotos.length === 0) {
+    if (arrPhotos.length < perPage) {
         Notify.info(
             `We're sorry, but you've reached the end of search results.`
         );
