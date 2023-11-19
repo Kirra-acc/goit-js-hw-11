@@ -11,6 +11,8 @@ const btnMore = document.querySelector(".load-more");
 let page = 1;
 let arrPhotos = [];
 let totalPhotos = 0;
+let userInput;
+
 async function getData(userInput, page) {
     try {
         const response = await getPhotos(userInput, page);
