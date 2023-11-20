@@ -92,6 +92,7 @@ body {
 }
 .photo-card:hover {
     transform: scale(1.05);
+    border-color: #453434;    
 }
 .card-img {
     width: 100%;
