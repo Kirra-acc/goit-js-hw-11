@@ -24,6 +24,15 @@ async function getData(userInput, page, perPage) {
             captionsData: 'alt',
             captionDelay: 250,
         });
+
+        const lastPage = Math.ceil(response.totalHits / perPage);
+
+        if (lastPage === page) {
+            Notify.info(
+                `We're sorry, but you've reached the end of search results.`
+            );
+            btnMore.classList.add("is-hidden");
+        } 
     } catch (error) {
         console.log(error);
         Notify.failure(`Oops. Something went wrong.`);
@@ -93,12 +102,6 @@ btnMore.addEventListener("click", async () => {
     console.log(page);
     await getData(userInput, page, perPage);
     smoothScroll();
-    if (arrPhotos.length < perPage) {
-        Notify.info(
-            `We're sorry, but you've reached the end of search results.`
-        );
-        btnMore.classList.add("is-hidden");
-    } 
 })
 // Зробити плавне прокручування сторінки після запиту і відтворення кожної наступної групи зображень.
 
