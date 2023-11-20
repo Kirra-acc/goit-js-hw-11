@@ -66,6 +66,7 @@ form.addEventListener("submit", async (event) => {
     if (!userInput) {
         Notify.failure(`I'm sorry, but I can't process an empty request.`);
         btnMore.classList.add('is-hidden');
+        return;
     }
     await getData(userInput, page, perPage);
     if (arrPhotos.length === 0) {
